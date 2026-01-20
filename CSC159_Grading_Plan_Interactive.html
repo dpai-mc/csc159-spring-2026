@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSC 159 Fundamentals of Penetration Testing - Grading Plan">
+    <title>CSC 159 - Grading Plan | Mendocino College</title>
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #10b981;
+            --bg-color: #ffffff;
+            --surface-color: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --hover-color: #eff6ff;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-color);
+        }
+
+        /* Skip Link for Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 2rem 1rem;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header h1 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        .header-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+            background: var(--surface-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .sidebar h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            background: var(--hover-color);
+            color: var(--secondary-color);
+            outline: 2px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
+
+        .nav-link.active {
+            background: var(--secondary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            min-height: 100vh;
+        }
+
+        /* Section Styles */
+        .section {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            padding: 1.25rem 1.5rem;
+            background: var(--surface-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+        }
+
+        .section-header:hover,
+        .section-header:focus {
+            background: var(--hover-color);
+            outline: 2px solid var(--secondary-color);
+            outline-offset: -2px;
+        }
+
+        .section-header h2 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            color: var(--text-secondary);
+        }
+
+        .section-header[aria-expanded="true"] .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            padding: 1.5rem;
+            display: none;
+        }
+
+        .section-content.active {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Table Styles */
+        .table-container {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--surface-color);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        tr:hover {
+            background: var(--hover-color);
+        }
+
+        /* Badge Styles */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-primary {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* Grid Layout for Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .card {
+            background: var(--surface-color);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-value {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        /* List Styles */
+        .styled-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .styled-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .styled-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* Alert Box */
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-color: #2563eb;
+            color: #1e3a8a;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: #f59e0b;
+            color: #92400e;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: #10b981;
+            color: #065f46;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin: 1rem 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            transition: width 0.3s;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: var(--primary-color);
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        .btn-expand-all {
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--surface-color);
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .sidebar {
+                position: static;
+                margin-bottom: 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .header-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .sidebar,
+            .btn,
+            .toggle-icon {
+                display: none;
+            }
+
+            .section-content {
+                display: block !important;
+            }
+
+            .section-header {
+                cursor: default;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Focus Visible for Better Accessibility */
+        *:focus-visible {
+            outline: 2px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
+
+        /* High Contrast Mode Support */
+        @media (prefers-contrast: high) {
+            :root {
+                --border-color: #000;
+                --text-primary: #000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link for Screen Readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header-content">
+            <h1>CSC 159 - Fundamentals of Penetration Testing</h1>
+            <div class="header-meta">
+                <span><strong>Course:</strong> 4 Units</span>
+                <span><strong>Duration:</strong> 17 Weeks</span>
+                <span><strong>Institution:</strong> Mendocino College</span>
+                <span><strong>Instructor:</strong> David Pai</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" role="navigation" aria-label="Page sections">
+            <h2>Quick Navigation</h2>
+            <button class="btn btn-primary btn-expand-all" onclick="toggleAllSections()" aria-label="Expand or collapse all sections">
+                Expand All
+            </button>
+            <ul class="nav-list">
+                <li><a href="#overview" class="nav-link">Overview</a></li>
+                <li><a href="#distribution" class="nav-link">Grade Distribution</a></li>
+                <li><a href="#scale" class="nav-link">Grading Scale</a></li>
+                <li><a href="#labs" class="nav-link">Lab Activities</a></li>
+                <li><a href="#midterm" class="nav-link">Midterm Exam</a></li>
+                <li><a href="#project" class="nav-link">Final Project</a></li>
+                <li><a href="#quizzes" class="nav-link">Weekly Quizzes</a></li>
+                <li><a href="#homework" class="nav-link">Homework</a></li>
+                <li><a href="#discussion" class="nav-link">Discussion</a></li>
+                <li><a href="#report" class="nav-link">Professional Report</a></li>
+                <li><a href="#schedule" class="nav-link">Weekly Schedule</a></li>
+                <li><a href="#policies" class="nav-link">Course Policies</a></li>
+                <li><a href="#slo" class="nav-link">SLO Alignment</a></li>
+                <li><a href="#extra" class="nav-link">Extra Credit</a></li>
+                <li><a href="#resources" class="nav-link">Resources</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content" role="main">
+            <!-- Overview Section -->
+            <section class="section" id="overview">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="true" aria-controls="overview-content">
+                    <h2><span class="section-icon">📋</span> Course Overview</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content active" id="overview-content">
+                    <div class="alert alert-info">
+                        <strong>Course Description:</strong> This course will help students learn how to perform an effective penetration test in an enterprise network environment that must be attacked, exploited, evaded, and defended. This course also covers how to pen test IoT systems, OT systems, how to write your own exploits, build your own tools, conduct advanced binaries exploitation, double pivot to access hidden networks, and also customize scripts/exploits to get into the innermost segments of the network.
+                    </div>
+                    <div class="card-grid">
+                        <div class="card">
+                            <h3>Total Points</h3>
+                            <div class="card-value">1000</div>
+                        </div>
+                        <div class="card">
+                            <h3>Lab Activities</h3>
+                            <div class="card-value">16</div>
+                        </div>
+                        <div class="card">
+                            <h3>Assignments</h3>
+                            <div class="card-value">5</div>
+                        </div>
+                        <div class="card">
+                            <h3>Quizzes</h3>
+                            <div class="card-value">10</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grade Distribution Section -->
+            <section class="section" id="distribution">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="false" aria-controls="distribution-content">
+                    <h2><span class="section-icon">📊</span> Grade Distribution</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="distribution-content">
+                    <div class="table-container">
+                        <table role="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Assessment Category</th>
+                                    <th scope="col">Percentage</th>
+                                    <th scope="col">Points</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Lab Activities</td>
+                                    <td>35%</td>
+                                    <td>350</td>
+                                    <td><span class="badge badge-primary">Highest Weight</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Final Penetration Testing Project</td>
+                                    <td>20%</td>
+                                    <td>200</td>
+                                    <td><span class="badge badge-success">Capstone</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Midterm Exam</td>
+                                    <td>15%</td>
+                                    <td>150</td>
+                                    <td><span class="badge badge-warning">Week 9</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Weekly Quizzes</td>
+                                    <td>10%</td>
+                                    <td>100</td>
+                                    <td><span class="badge badge-primary">10 Quizzes</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Homework Assignments</td>
+                                    <td>10%</td>
+                                    <td>100</td>
+                                    <td><span class="badge badge-primary">5 Assignments</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Discussion Participation</td>
+                                    <td>5%</td>
+                                    <td>50</td>
+                                    <td><span class="badge badge-primary">Weekly</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Professional Report</td>
+                                    <td>5%</td>
+                                    <td>50</td>
+                                    <td><span class="badge badge-success">Final Week</span></td>
+                                </tr>
+                                <tr style="font-weight: bold; background: var(--surface-color);">
+                                    <td>TOTAL</td>
+                                    <td>100%</td>
+                                    <td>1000</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grading Scale Section -->
+            <section class="section" id="scale">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="false" aria-controls="scale-content">
+                    <h2><span class="section-icon">🎯</span> Grading Scale</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="scale-content">
+                    <div class="table-container">
+                        <table role="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Letter Grade</th>
+                                    <th scope="col">Percentage Range</th>
+                                    <th scope="col">Point Range</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>A</strong></td>
+                                    <td>90-100%</td>
+                                    <td>900-1000 points</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>B</strong></td>
+                                    <td>80-89%</td>
+                                    <td>800-899 points</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>C</strong></td>
+                                    <td>70-79%</td>
+                                    <td>700-799 points</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>D</strong></td>
+                                    <td>60-69%</td>
+                                    <td>600-699 points</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>F</strong></td>
+                                    <td>Below 60%</td>
+                                    <td>Below 600 points</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lab Activities Section -->
+            <section class="section" id="labs">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="false" aria-controls="labs-content">
+                    <h2><span class="section-icon">🔬</span> Lab Activities (35% - 350 points)</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="labs-content">
+                    <div class="alert alert-info">
+                        <strong>Format:</strong> Hands-on practical exercises | <strong>Frequency:</strong> Weekly (Weeks 1-17) | <strong>Individual Lab Value:</strong> 20-25 points each
+                    </div>
+                    
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Module 1: Penetration Testing Methodology (Weeks 1-3)</h3>
+                    <ul class="styled-list">
+                        <li>Lab 1: Setting Up Penetration Testing Environment</li>
+                        <li>Lab 2: Scoping and Engagement Documentation</li>
+                        <li>Lab 3: Basic Report Writing Exercise</li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Module 2: OSINT, Social Engineering & Web Apps (Weeks 4-7)</h3>
+                    <ul class="styled-list">
+                        <li>Lab 4: OSINT Reconnaissance Techniques</li>
+                        <li>Lab 5: Social Engineering Attack Simulation</li>
+                        <li>Lab 6: Web Application Vulnerability Assessment</li>
+                        <li>Lab 7: Web Application Exploitation Practice</li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Module 3: Network Penetration Testing (Weeks 8-10)</h3>
+                    <ul class="styled-list">
+                        <li>Lab 8: External Network Scanning and Enumeration</li>
+                        <li>Lab 9: Internal Network Lateral Movement</li>
+                        <li>Lab 10: Perimeter Device Testing</li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Module 4: Enterprise & Industrial Controls (Weeks 11-16)</h3>
+                    <ul class="styled-list">
+                        <li>Lab 11: Wireless Network Penetration Testing</li>
+                        <li>Lab 12: IoT Device Security Assessment</li>
+                        <li>Lab 13: OT/SCADA System Analysis</li>
+                        <li>Lab 14: Cloud Infrastructure Testing</li>
+                        <li>Lab 15: Binary Analysis and Reverse Engineering</li>
+                        <li>Lab 16: Active Directory Attack Techniques</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Midterm Exam Section -->
+            <section class="section" id="midterm">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="false" aria-controls="midterm-content">
+                    <h2><span class="section-icon">📝</span> Midterm Exam (15% - 150 points)</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="midterm-content">
+                    <div class="alert alert-warning">
+                        <strong>Timing:</strong> Week 9 | <strong>Coverage:</strong> Weeks 1-8 material
+                    </div>
+                    
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Exam Components:</h3>
+                    <div class="card-grid">
+                        <div class="card">
+                            <h3>Multiple Choice / True-False</h3>
+                            <div class="card-value">40 pts</div>
+                        </div>
+                        <div class="card">
+                            <h3>Short Answer Questions</h3>
+                            <div class="card-value">50 pts</div>
+                        </div>
+                        <div class="card">
+                            <h3>Practical Lab Scenario</h3>
+                            <div class="card-value">60 pts</div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 1rem;"><strong>Format:</strong> Combination of theoretical and practical assessment demonstrating mastery of penetration testing fundamentals.</p>
+                </div>
+            </section>
+
+            <!-- Final Project Section -->
+            <section class="section" id="project">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="false" aria-controls="project-content">
+                    <h2><span class="section-icon">🎓</span> Final Penetration Testing Project (20% - 200 points)</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="project-content">
+                    <div class="alert alert-success">
+                        <strong>Timing:</strong> Weeks 15-17 | <strong>Team Size:</strong> Individual or pairs (instructor approval required)
+                    </div>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Deliverables:</h3>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Penetration Test Execution</span>
+                            <span>100 points</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Professional Findings Report</span>
+                            <span>100 points</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 50%;"></div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Rubric Areas:</h3>
+                    <ul class="styled-list">
+                        <li>Reconnaissance and scanning</li>
+                        <li>Vulnerability identification</li>
+                        <li>Exploitation techniques</li>
+                        <li>Privilege escalation</li>
+                        <li>Lateral movement</li>
+                        <li>Persistence methods</li>
+                        <li>Report clarity and professionalism</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Weekly Quizzes Section -->
+            <section class="section" id="quizzes">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="false" aria-controls="quizzes-content">
+                    <h2><span class="section-icon">✅</span> Weekly Quizzes (10% - 100 points)</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="quizzes-content">
+                    <div class="alert alert-info">
+                        <strong>Format:</strong> Online or in-class short quizzes | <strong>Frequency:</strong> 10 quizzes total | <strong>Time Limit:</strong> 15-20 minutes | <strong>Individual Quiz Value:</strong> 10 points each
+                    </div>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Quiz Schedule:</h3>
+                    <p>Quizzes administered in Weeks 2-3, 5-7, 9-10, 12, 14, 16</p>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Content Coverage:</h3>
+                    <ul class="styled-list">
+                        <li>Previous week's lecture material</li>
+                        <li>Reading assignments</li>
+                        <li>Key concepts and terminology</li>
+                        <li>Best practices and ethical considerations</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Homework Assignments Section -->
+            <section class="section" id="homework">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="false" aria-controls="homework-content">
+                    <h2><span class="section-icon">📚</span> Homework Assignments (10% - 100 points)</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="homework-content">
+                    <div class="alert alert-info">
+                        <strong>Format:</strong> Written assignments and practical tasks | <strong>Frequency:</strong> 5 major assignments | <strong>Individual Assignment Value:</strong> 20 points each
+                    </div>
+
+                    <div class="table-container">
+                        <table role="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Assignment</th>
+                                    <th scope="col">Week</th>
+                                    <th scope="col">Topic</th>
+                                    <th scope="col">Points</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Assignment 1</td>
+                                    <td>Week 3</td>
+                                    <td>Penetration Testing Methodology Comparison</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>Assignment 2</td>
+                                    <td>Week 6</td>
+                                    <td>Social Engineering Attack Vector Analysis</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>Assignment 3</td>
+                                    <td>Week 10</td>
+                                    <td>Network Defense Evasion Techniques</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>Assignment 4</td>
+                                    <td>Week 13</td>
+                                    <td>Script Development for Automation</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>Assignment 5</td>
+                                    <td>Week 15</td>
+                                    <td>Vulnerability Research Paper</td>
+                                    <td>20</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Discussion Participation Section -->
+            <section class="section" id="discussion">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="false" aria-controls="discussion-content">
+                    <h2><span class="section-icon">💬</span> Discussion Participation (5% - 50 points)</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="discussion-content">
+                    <div class="alert alert-info">
+                        <strong>Format:</strong> Online discussion board and in-class participation | <strong>Frequency:</strong> Weekly | <strong>Points per Week:</strong> 3 points
+                    </div>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Evaluation Criteria:</h3>
+                    <ul class="styled-list">
+                        <li>Thoughtful contributions to discussions</li>
+                        <li>Engagement with peers' posts</li>
+                        <li>Sharing of resources and insights</li>
+                        <li>Ethical considerations in penetration testing</li>
+                        <li>Real-world application examples</li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Discussion Topics Include:</h3>
+                    <ul class="styled-list">
+                        <li>Ethics of penetration testing</li>
+                        <li>Legal boundaries and compliance</li>
+                        <li>Industry trends and news</li>
+                        <li>Tool comparisons and recommendations</li>
+                        <li>Case studies of security breaches</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Professional Report Section -->
+            <section class="section" id="report">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="false" aria-controls="report-content">
+                    <h2><span class="section-icon">📄</span> Professional Report (5% - 50 points)</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="report-content">
+                    <div class="alert alert-success">
+                        <strong>Timing:</strong> Week 17 (Final Week) | <strong>Associated with:</strong> Final Project
+                    </div>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Report Requirements:</h3>
+                    <ul class="styled-list">
+                        <li>Executive summary</li>
+                        <li>Methodology description</li>
+                        <li>Detailed findings</li>
+                        <li>Risk ratings</li>
+                        <li>Remediation recommendations</li>
+                        <li>Technical appendices</li>
+                        <li>Professional formatting</li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Grading Rubric:</h3>
+                    <div class="card-grid">
+                        <div class="card">
+                            <h3>Clarity & Organization</h3>
+                            <div class="card-value">15 pts</div>
+                        </div>
+                        <div class="card">
+                            <h3>Technical Accuracy</h3>
+                            <div class="card-value">15 pts</div>
+                        </div>
+                        <div class="card">
+                            <h3>Completeness</h3>
+                            <div class="card-value">10 pts</div>
+                        </div>
+                        <div class="card">
+                            <h3>Professional Presentation</h3>
+                            <div class="card-value">10 pts</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Weekly Schedule Section -->
+            <section class="section" id="schedule">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="false" aria-controls="schedule-content">
+                    <h2><span class="section-icon">📅</span> Weekly Assessment Schedule</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="schedule-content">
+                    <div class="table-container">
+                        <table role="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Week</th>
+                                    <th scope="col">Topic</th>
+                                    <th scope="col">Assessments Due</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Introduction to Pen Testing</td>
+                                    <td>Lab 1</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Methodologies & Frameworks</td>
+                                    <td>Lab 2, Quiz 1</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Scoping & Engagement</td>
+                                    <td>Lab 3, Quiz 2, Assignment 1</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>OSINT</td>
+                                    <td>Lab 4</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Social Engineering Basics</td>
+                                    <td>Lab 5, Quiz 3</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Social Engineering Advanced</td>
+                                    <td>Lab 6, Quiz 4, Assignment 2</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Web Application Testing</td>
+                                    <td>Lab 7, Quiz 5</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>Network Testing - External</td>
+                                    <td>Lab 8</td>
+                                </tr>
+                                <tr style="background: #fef3c7;">
+                                    <td><strong>9</strong></td>
+                                    <td><strong>MIDTERM EXAM</strong></td>
+                                    <td><strong>Lab 9, Quiz 6, Midterm</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>Network Testing - Internal</td>
+                                    <td>Lab 10, Quiz 7, Assignment 3</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>Wireless Testing</td>
+                                    <td>Lab 11</td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td>IoT Testing</td>
+                                    <td>Lab 12, Quiz 8</td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td>OT/SCADA Testing</td>
+                                    <td>Lab 13, Assignment 4</td>
+                                </tr>
+                                <tr>
+                                    <td>14</td>
+                                    <td>Cloud Testing</td>
+                                    <td>Lab 14, Quiz 9</td>
+                                </tr>
+                                <tr>
+                                    <td>15</td>
+                                    <td>Binary Analysis</td>
+                                    <td>Lab 15, Assignment 5, Project Start</td>
+                                </tr>
+                                <tr>
+                                    <td>16</td>
+                                    <td>Active Directory</td>
+                                    <td>Lab 16, Quiz 10</td>
+                                </tr>
+                                <tr style="background: #d1fae5;">
+                                    <td><strong>17</strong></td>
+                                    <td><strong>Final Review & Presentations</strong></td>
+                                    <td><strong>Final Project & Report Due</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Course Policies Section -->
+            <section class="section" id="policies">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="false" aria-controls="policies-content">
+                    <h2><span class="section-icon">⚖️</span> Course Policies</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="policies-content">
+                    <h3 style="color: var(--primary-color);">Late Work Policy</h3>
+                    <ul class="styled-list">
+                        <li><strong>Labs:</strong> 10% deduction per day late (maximum 3 days)</li>
+                        <li><strong>Assignments:</strong> 10% deduction per day late (maximum 5 days)</li>
+                        <li><strong>Quizzes:</strong> Must be taken during scheduled time (no make-ups without prior arrangement)</li>
+                        <li><strong>Final Project:</strong> No late submissions accepted</li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Academic Integrity</h3>
+                    <div class="alert alert-warning">
+                        <ul class="styled-list">
+                            <li>All work must be original</li>
+                            <li>Collaboration on labs is encouraged but each student must submit their own work</li>
+                            <li>Tools and exploits used must be documented and cited</li>
+                            <li>Plagiarism will result in a zero for the assignment and possible course failure</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Attendance and Participation</h3>
+                    <ul class="styled-list">
+                        <li>Attendance is critical due to hands-on nature of course</li>
+                        <li>More than 3 unexcused absences may result in course failure</li>
+                        <li>Lab work cannot be completed outside of scheduled lab time without prior approval</li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Required Materials</h3>
+                    <ul class="styled-list">
+                        <li>Textbook: EC-Council Certified Penetration Testing Professional Complete Series</li>
+                        <li>Access to virtual lab environment (provided by college)</li>
+                        <li>Personal laptop recommended for homework assignments</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SLO Alignment Section -->
+            <section class="section" id="slo">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="false" aria-controls="slo-content">
+                    <h2><span class="section-icon">🎯</span> Student Learning Outcome Alignment</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="slo-content">
+                    <p style="margin-bottom: 1rem;">Each assessment is designed to measure progress toward course SLOs with an expected performance level of 0.75 (75%):</p>
+
+                    <div class="card">
+                        <h3>SLO 1: Implement advanced methods to gain access to protected devices</h3>
+                        <p style="margin-top: 0.5rem;"><strong>Assessed through:</strong> Labs 8-16, Midterm, Final Project</p>
+                    </div>
+
+                    <div class="card" style="margin-top: 1rem;">
+                        <h3>SLO 2: Locate and access hidden networks</h3>
+                        <p style="margin-top: 0.5rem;"><strong>Assessed through:</strong> Labs 9-10, Assignment 3, Final Project</p>
+                    </div>
+
+                    <div class="card" style="margin-top: 1rem;">
+                        <h3>SLO 3: Use scripts to automate pen testing attacks</h3>
+                        <p style="margin-top: 0.5rem;"><strong>Assessed through:</strong> Labs 13-16, Assignment 4, Final Project</p>
+                    </div>
+
+                    <div class="card" style="margin-top: 1rem;">
+                        <h3>SLO 4: Create professional penetration testing reports</h3>
+                        <p style="margin-top: 0.5rem;"><strong>Assessed through:</strong> Lab 3, Assignment 1, Professional Report, Final Project</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Extra Credit Section -->
+            <section class="section" id="extra">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="false" aria-controls="extra-content">
+                    <h2><span class="section-icon">⭐</span> Extra Credit Opportunities (Maximum 50 points)</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="extra-content">
+                    <div class="alert alert-success">
+                        Students may earn up to 50 additional points through approved extra credit activities.
+                    </div>
+
+                    <div class="card-grid">
+                        <div class="card">
+                            <h3>🚩 CTF Competitions</h3>
+                            <div class="card-value">25 pts</div>
+                            <p style="margin-top: 0.5rem; font-size: 0.875rem;">Participate in approved CTF events and submit write-up of challenges completed</p>
+                        </div>
+                        <div class="card">
+                            <h3>🎤 Security Conference</h3>
+                            <div class="card-value">25 pts</div>
+                            <p style="margin-top: 0.5rem; font-size: 0.875rem;">Attend virtual or in-person security conference and submit 2-page reflection paper</p>
+                        </div>
+                        <div class="card">
+                            <h3>🔍 Vulnerability Research</h3>
+                            <div class="card-value">20 pts</div>
+                            <p style="margin-top: 0.5rem; font-size: 0.875rem;">Identify and responsibly disclose a vulnerability; document the process</p>
+                        </div>
+                        <div class="card">
+                            <h3>🛠️ Tool Development</h3>
+                            <div class="card-value">15 pts</div>
+                            <p style="margin-top: 0.5rem; font-size: 0.875rem;">Create a custom penetration testing tool or script and share with class</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resources Section -->
+            <section class="section" id="resources">
+                <button class="section-header" onclick="toggleSection(this)" aria-expanded="false" aria-controls="resources-content">
+                    <h2><span class="section-icon">📚</span> Resources for Success</h2>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <div class="section-content" id="resources-content">
+                    <h3 style="color: var(--primary-color);">Required Tools and Software</h3>
+                    <ul class="styled-list">
+                        <li>Kali Linux</li>
+                        <li>Metasploit Framework</li>
+                        <li>Burp Suite</li>
+                        <li>Wireshark</li>
+                        <li>Nmap</li>
+                        <li>Additional tools introduced throughout course</li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Support Services</h3>
+                    <ul class="styled-list">
+                        <li>Office hours: [To be announced]</li>
+                        <li>Lab tutoring: [To be announced]</li>
+                        <li>Online discussion forum</li>
+                        <li>Study groups encouraged</li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Ethical Guidelines</h3>
+                    <div class="alert alert-warning">
+                        <strong>All penetration testing activities must be conducted:</strong>
+                        <ul class="styled-list" style="margin-top: 0.5rem;">
+                            <li>Only on approved lab environments</li>
+                            <li>Within legal boundaries</li>
+                            <li>With proper authorization</li>
+                            <li>Following responsible disclosure practices</li>
+                            <li>Never on production systems without explicit written permission</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="margin-top: 1.5rem; color: var(--primary-color);">Feedback and Grading Timeline</h3>
+                    <ul class="styled-list">
+                        <li><strong>Labs:</strong> Graded and returned within 1 week</li>
+                        <li><strong>Quizzes:</strong> Graded immediately (online) or within 2 days</li>
+                        <li><strong>Assignments:</strong> Graded and returned within 2 weeks</li>
+                        <li><strong>Midterm:</strong> Graded and returned within 1 week</li>
+                        <li><strong>Final Project:</strong> Graded within 2 weeks of submission</li>
+                        <li><strong>Final Grades:</strong> Posted within 1 week of semester end</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <p><strong>Instructor:</strong> David Pai | <strong>Institution:</strong> Mendocino College</p>
+        <p style="margin-top: 0.5rem; font-style: italic;">This grading plan is subject to modification at the instructor's discretion. Any changes will be announced in class and posted on the course website with reasonable advance notice.</p>
+        <p style="margin-top: 0.5rem;">Last Updated: January 2026 | Version 1.0</p>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Toggle individual section
+        function toggleSection(button) {
+            const content = button.nextElementSibling;
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+            
+            button.setAttribute('aria-expanded', !isExpanded);
+            content.classList.toggle('active');
+            
+            // Update active state in navigation
+            updateNavigation();
+        }
+
+        // Toggle all sections
+        let allExpanded = false;
+        function toggleAllSections() {
+            const buttons = document.querySelectorAll('.section-header');
+            allExpanded = !allExpanded;
+            
+            buttons.forEach(button => {
+                const content = button.nextElementSibling;
+                button.setAttribute('aria-expanded', allExpanded);
+                
+                if (allExpanded) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+            
+            // Update button text
+            const toggleButton = document.querySelector('.btn-expand-all');
+            toggleButton.textContent = allExpanded ? 'Collapse All' : 'Expand All';
+            toggleButton.setAttribute('aria-label', allExpanded ? 'Collapse all sections' : 'Expand all sections');
+            
+            updateNavigation();
+        }
+
+        // Update navigation active state
+        function updateNavigation() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let firstVisibleSection = null;
+            
+            sections.forEach(section => {
+                const content = section.querySelector('.section-content');
+                if (content.classList.contains('active') && !firstVisibleSection) {
+                    firstVisibleSection = section.id;
+                }
+            });
+            
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href').substring(1);
+                if (href === firstVisibleSection) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+        // Smooth scroll to section and expand it
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    // Expand the section if it's not already expanded
+                    const button = targetSection.querySelector('.section-header');
+                    const content = targetSection.querySelector('.section-content');
+                    
+                    if (!content.classList.contains('active')) {
+                        button.setAttribute('aria-expanded', 'true');
+                        content.classList.add('active');
+                    }
+                    
+                    // Smooth scroll to section
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    // Update navigation
+                    updateNavigation();
+                    
+                    // Set focus to the section header for accessibility
+                    setTimeout(() => {
+                        button.focus();
+                    }, 500);
+                }
+            });
+        });
+
+        // Keyboard navigation for sections
+        document.querySelectorAll('.section-header').forEach(button => {
+            button.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleSection(this);
+                }
+            });
+        });
+
+        // Initialize: expand first section by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.section-header');
+            if (firstSection) {
+                const content = firstSection.nextElementSibling;
+                firstSection.setAttribute('aria-expanded', 'true');
+                content.classList.add('active');
+            }
+            updateNavigation();
+        });
+
+        // Track scroll position for sticky navigation highlight
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    highlightNavigationOnScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        function highlightNavigationOnScroll() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = '';
+            const scrollPosition = window.scrollY + 200;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    currentSection = section.id;
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href').substring(1);
+                if (href === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
